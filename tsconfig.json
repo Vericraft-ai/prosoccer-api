@@ -1,0 +1,30 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "commonjs",
+    "sourceMap": true,
+    "strictPropertyInitialization": false,
+    "strict": true,
+    "allowJs": true,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+
+    "moduleResolution": "node",
+
+    "baseUrl": ".",
+    "paths": {
+      "@services/*": ["src/api/services/*"],
+      "@api/*": ["src/api/*"],
+      "@app/*": ["src/*"],
+      "@db/*": ["src/api/db/*"]
+    },
+    "types": ["jest", "node"],
+
+    "typeRoots": ["node_modules/@types"]
+  },
+  "include": ["src"]
+}

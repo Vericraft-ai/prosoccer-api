@@ -1,0 +1,92 @@
+{
+  "name": "prosoccer",
+  "version": "1.0.0",
+  "description": "Pro Soccer API",
+  "main": "index.ts",
+  "engines": {
+    "node": ">=16.19.0",
+    "npm": ">=8.19.0"
+  },
+  "scripts": {
+    "build": "npx tsc",
+    "dev": "NODE_ENV=development concurrently \"npx tsc -p . --watch\" \"nodemon -q dist/src/index.js | pino-pretty\"",
+    "lint": "npx tsc --project ./tsconfig.json && eslint . --ext .ts",
+    "format": "prettier --write .",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "start": "node dist/src/index.js  | pino-pretty",
+    "test": "NODE_ENV=test jest tests/*.spec.[jt]s --maxWorkers=1 --detectOpenHandles ./tests",
+    "prepare": "husky install"
+  },
+  "commitlint": {
+    "extends": [
+      "./src/config/commitlint/commitlint.config.ts"
+    ]
+  },
+  "keywords": [
+    "metaverse",
+    "ai",
+    "soccer",
+    "chainlink",
+    "nft",
+    "gaming"
+  ],
+  "author": "Vericraft",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.6",
+    "@commitlint/config-conventional": "^17.6.6",
+    "@eslint/js": "^9.2.0",
+    "@tsconfig/node16": "^1.0.4",
+    "@types/cors": "^2.8.13",
+    "@types/express-session": "^1.18.0",
+    "@types/jest": "^29.0.0",
+    "@types/morgan": "^1.9.3",
+    "@types/node": "^18.6.4",
+    "@types/nodemon": "1.19.2",
+    "@types/ramda": "^0.29.2",
+    "@types/request-promise": "^4.1.48",
+    "@types/throng": "^5.0.4",
+    "@typescript-eslint/eslint-plugin": "^5.32.0",
+    "@typescript-eslint/parser": "^5.32.0",
+    "eslint": "^8.21.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jest": "^26.9.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "jest": "^28.1.3",
+    "jest-module-name-mapper": "^0.1.5",
+    "jest-websocket-mock": "^2.4.0",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8",
+    "request-promise": "^4.2.6",
+    "ts-jest": "^28.0.8",
+    "typescript": "^4.6.4",
+    "typescript-eslint": "^7.8.0"
+  },
+  "dependencies": {
+    "concurrently": "^7.3.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "email-validator": "^2.0.4",
+    "ethers": "^6.12.1",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "helmet": "^5.1.1",
+    "husky": "^8.0.0",
+    "module-alias": "^2.2.2",
+    "mongoose": "^7.3.1",
+    "morgan": "^1.10.0",
+    "pino": "^8.4.0",
+    "pino-pretty": "^8.1.0",
+    "ramda": "^0.29.0",
+    "siwe": "^2.3.2",
+    "throng": "^5.0.0",
+    "ts-node-dev": "^2.0.0"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@app": "dist/src",
+    "@services": "dist/src/api/services",
+    "@db": "dist/src/api/db",
+    "@api": "dist/src/api"
+  }
+}
