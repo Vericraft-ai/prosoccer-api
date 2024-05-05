@@ -8,12 +8,12 @@
     "npm": ">=8.19.0"
   },
   "scripts": {
-    "build": "npx tsc",
-    "dev": "NODE_ENV=development concurrently \"npx tsc -p . --watch\" \"nodemon -q dist/src/index.js | pino-pretty\"",
+    "build": "rm -r dist && npx tsc",
+    "dev": "NODE_ENV=development concurrently \"npx tsc -p . --watch\" \"nodemon -q dist/index.js | pino-pretty\"",
     "lint": "npx tsc --project ./tsconfig.json && eslint . --ext .ts",
     "format": "prettier --write .",
     "lint:fix": "eslint . --ext .ts --fix",
-    "start": "node dist/src/index.js  | pino-pretty",
+    "start": "node dist/index.js  | pino-pretty",
     "test": "NODE_ENV=test jest tests/*.spec.[jt]s --maxWorkers=1 --detectOpenHandles ./tests",
     "prepare": "husky install"
   },
@@ -64,6 +64,7 @@
   },
   "dependencies": {
     "concurrently": "^7.3.0",
+    "connect-mongo": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "email-validator": "^2.0.4",
@@ -84,9 +85,9 @@
   },
   "_moduleAliases": {
     "@root": ".",
-    "@app": "dist/src",
-    "@services": "dist/src/api/services",
-    "@db": "dist/src/api/db",
-    "@api": "dist/src/api"
+    "@app": "dist",
+    "@services": "dist/api/services",
+    "@db": "dist/api/db",
+    "@api": "dist/api"
   }
 }

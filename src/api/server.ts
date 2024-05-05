@@ -6,6 +6,7 @@ import Session from 'express-session';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import express, { Express, Response } from 'express';
+import MongoStore from 'connect-mongo';
 import dotenv from 'dotenv';
 import { config } from '@app/config';
 import routes from '@api/routes';
@@ -22,8 +23,10 @@ const server = async () => {
 
   app.use(
     Session({
-      name: 'siwe-quickstart',
       secret: config.session.secret,
+      store: MongoStore.create({
+        mongoUrl: config.db.uri,
+      }),
       saveUninitialized: true,
       resave: false,
       cookie: {
@@ -49,7 +52,7 @@ const server = async () => {
     });
   });
 
-  app.use('/', routes);
+  app.use('/api', routes);
 
   const httpServer = http.createServer(app);
 

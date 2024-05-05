@@ -7,7 +7,7 @@ void server()
   .then((httpServer) => {
     httpServer.listen({ port: config.server.port }, () => {
       logger.info(
-        `⚡️[server]: Server is running at http://localhost:${config.server.port}/graphql`
+        `⚡️[server]: Server is running at http://localhost:${config.server.port}/`
       );
     });
   })
