@@ -8,7 +8,7 @@
     "npm": ">=8.19.0"
   },
   "scripts": {
-    "build": "rm -r dist && npx tsc",
+    "build": "rm -rf dist && npx tsc",
     "dev": "NODE_ENV=development concurrently \"npx tsc -p . --watch\" \"nodemon -q dist/index.js | pino-pretty\"",
     "lint": "npx tsc --project ./tsconfig.json && eslint . --ext .ts",
     "format": "prettier --write .",
