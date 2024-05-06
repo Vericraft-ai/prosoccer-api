@@ -21,4 +21,16 @@ export const config: Config = {
     secret: getEnvironmentValue('SESSION_SECRET'),
     name: getEnvironmentValue('SESSION_NAME', 'prosoccer'),
   },
+  pinata:{
+    url: getEnvironmentValue('PINATA_URL'),
+    secret: getEnvironmentValue('PINATA_JWT'),
+  },
+  removeBg:{
+    url: getEnvironmentValue('REMOVE_BG_URL'),
+    apiKey: getEnvironmentValue('REMOVE_BG_API_KEY'),
+  },
+  stability:{
+    url: getEnvironmentValue('STABILITY_URL'),
+    apiKey: getEnvironmentValue('STABILITY_API_KEY'),
+  },
 };
