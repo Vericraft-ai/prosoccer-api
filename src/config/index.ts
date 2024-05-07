@@ -25,17 +25,22 @@ export interface Config {
     secret: string;
     name: string;
   };
-  pinata:{
+  pinata: {
     url: string;
     secret: string;
-  }
-  removeBg:{
+  };
+  removeBg: {
     url: string;
     apiKey: string;
   };
-  stability:{
+  stability: {
     url: string;
     apiKey: string;
+  };
+  cloudinary: {
+    cloudName: string;
+    apiKey: string;
+    apiSecret: string;
   };
 }
 

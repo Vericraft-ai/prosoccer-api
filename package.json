@@ -66,6 +66,7 @@
   "dependencies": {
     "axios": "^1.6.8",
     "canvas": "^2.11.2",
+    "cloudinary": "^2.2.0",
     "concurrently": "^7.3.0",
     "connect-mongo": "^5.1.0",
     "cors": "^2.8.5",
@@ -84,6 +85,7 @@
     "pino-pretty": "^8.1.0",
     "ramda": "^0.29.0",
     "siwe": "^2.3.2",
+    "streamifier": "^0.1.1",
     "throng": "^5.0.0",
     "ts-node-dev": "^2.0.0"
   },

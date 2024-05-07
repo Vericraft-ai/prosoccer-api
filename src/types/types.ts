@@ -1,5 +1,7 @@
 import { SiweMessage } from 'siwe';
 import { Cookie } from 'express-session';
+import { Request } from 'express';
+import { ITeams } from '@api/interfaces/teams';
 
 export type session = {
   nonce: string | null;
@@ -11,3 +13,5 @@ export type session = {
     role?: string;
   };
 };
+export type TeamPayload = Omit<ITeams, '_id'>;
+export type ExpressRequest = Request & { user?: { _id: string } };

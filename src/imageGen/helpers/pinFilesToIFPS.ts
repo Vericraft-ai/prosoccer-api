@@ -65,18 +65,14 @@ export const pinFileToIPFS = async ({ file }: PinataOptions) => {
   });
   formData.append('pinataOptions', pinataOptions);
 
-    try {
-       await axios.post(
-        config.pinata.url,
-        formData,
-        {
-          headers: {
-            ...formData.getHeaders(),
-            Authorization: `Bearer ${config.pinata.secret}`,
-          },
-        }
-      );
-    } catch (error) {
-       console.log('Error pinning file to IPFS:', error)
-    }
+  try {
+    await axios.post(config.pinata.url, formData, {
+      headers: {
+        ...formData.getHeaders(),
+        Authorization: `Bearer ${config.pinata.secret}`,
+      },
+    });
+  } catch (error) {
+    console.log('Error pinning file to IPFS:', error);
+  }
 };
