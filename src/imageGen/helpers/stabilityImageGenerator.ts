@@ -3,7 +3,10 @@ import axios from 'axios';
 import { pinFileToIPFS } from './pinFilesToIFPS';
 import { config } from '@app/config';
 
-export const stabilityImageGenerator = async (payload?: {prompt: string, aspect_ratio: string}) => {
+export const stabilityImageGenerator = async (payload?: {
+  prompt: string;
+  aspect_ratio: string;
+}) => {
   const formData = {
     prompt:
       'Digital rendering of a male soccer player standing against a solid gray background with hands folded. The player has a calm and neutral expression, with a slight frown that might suggest focus or determination. His hairstyle is modern, featuring a short, styled hair with a subtle undercut. He is wearing a soccer kit composed of a jersey, shorts, socks, and cleats.The player’s jersey should be plain black with no design on the jersey.There should be "ProSoccer" printed on the jersey. The overall design of the jersey should be modern, fitting tightly to the player\'s build, enhancing the athletic and sleek appearance of the figure.',

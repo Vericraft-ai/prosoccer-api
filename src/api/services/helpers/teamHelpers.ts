@@ -12,16 +12,21 @@ export const generateTeamLogo = async (team_name: string) => {
     aspect_ratio: '1:1',
   };
   const imageResponse = await stabilityImageGenerator(form_data);
-  if (imageResponse) {
+  if (!imageResponse) {
+    return
+  }
+    return new Promise((resolve, reject) => {
     let cloud_upload_stream = cloudinary.v2.uploader.upload_stream(
       { folder: 'prosoccer-team-logos' },
       (error, result) => {
         if (error) {
-          console.error(error);
+          reject(error);
         }
-        return result?.secure_url;
+        resolve(result?.secure_url);
       }
     );
     streamifier.createReadStream(imageResponse).pipe(cloud_upload_stream);
-  }
+    });
+  
 };
+

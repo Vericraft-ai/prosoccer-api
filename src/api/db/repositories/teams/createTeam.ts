@@ -8,7 +8,7 @@ export const createTeam = async (teamPayload: any) => {
     const user = await User.findOne({ user_id: teamPayload.user_id });
     if (!user?.id) {
       logger.error(`User not found with id: ${teamPayload.user_id}`);
-      return
+      return;
     }
     const team = await Teams.findOne({ user_id: teamPayload.user_id });
 

@@ -6,7 +6,7 @@ import { ExpressRequest } from '@app/types/types';
 export const createNewTeam = async (payload: any) => {
   const data = {
     ...payload,
-    logo: await generateTeamLogo(payload.team_name),
+    logo_url: await generateTeamLogo(payload.team_name),
     short_form: getShortName(payload.team_name),
   };
   return await createTeam(data);

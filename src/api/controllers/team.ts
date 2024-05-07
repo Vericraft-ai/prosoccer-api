@@ -19,13 +19,16 @@ export const createTeam = async (
   }
   const payload = {
     ...request.body,
-    user_id: request.user._id,
+    user_id: '3eae4b3e-1b7b-4b3b-8b7b-3eae4b3e1b7b',
   } as TeamPayload;
   const team = await createNewTeam(payload);
   response.json(team);
 };
 
-export const getTeamById = async (request: ExpressRequest, response: Response) => {
+export const getTeamById = async (
+  request: ExpressRequest,
+  response: Response
+) => {
   const team = await getUserByIdOrTeamId(request, request.params.team_id);
   if (!team) {
     response.status(404).json({ message: 'Team not found' });

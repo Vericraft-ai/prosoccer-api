@@ -4,7 +4,7 @@ import { logger } from '@api/utils/logger';
 type Team = Omit<ITeams, '_id'>;
 export const updateTeamById = async (teamId: string, data: Partial<Team>) => {
   try {
-    const team = await Teams.findByIdAndUpdate({_id: teamId}, data, {
+    const team = await Teams.findByIdAndUpdate({ _id: teamId }, data, {
       new: true,
       runValidators: true,
     });
