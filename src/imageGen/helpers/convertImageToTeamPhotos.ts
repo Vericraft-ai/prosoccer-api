@@ -18,7 +18,6 @@ export const convertImageToTeamPhotos = async (urls: { url: string }[]) => {
     })
   );
 
-
   // Create a canvas with a white background
   const canvas = createCanvas(700, 700); // adjust size as needed
   const ctx = canvas.getContext('2d');

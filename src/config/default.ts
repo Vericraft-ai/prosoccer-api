@@ -21,16 +21,21 @@ export const config: Config = {
     secret: getEnvironmentValue('SESSION_SECRET'),
     name: getEnvironmentValue('SESSION_NAME', 'prosoccer'),
   },
-  pinata:{
+  pinata: {
     url: getEnvironmentValue('PINATA_URL'),
     secret: getEnvironmentValue('PINATA_JWT'),
   },
-  removeBg:{
+  removeBg: {
     url: getEnvironmentValue('REMOVE_BG_URL'),
     apiKey: getEnvironmentValue('REMOVE_BG_API_KEY'),
   },
-  stability:{
+  stability: {
     url: getEnvironmentValue('STABILITY_URL'),
     apiKey: getEnvironmentValue('STABILITY_API_KEY'),
+  },
+  cloudinary: {
+    cloudName: getEnvironmentValue('CLOUDINARY_CLOUD_NAME'),
+    apiKey: getEnvironmentValue('CLOUDINARY_API_KEY'),
+    apiSecret: getEnvironmentValue('CLOUDINARY_API_SECRET'),
   },
 };

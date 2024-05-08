@@ -11,7 +11,7 @@ import dotenv from 'dotenv';
 import { config } from '@app/config';
 import routes from '@api/routes';
 import { connectDBWithRetry } from './db';
-
+import cloudinary from 'cloudinary';
 dotenv.config();
 
 const isDevelopment = config.env === 'development';
@@ -45,6 +45,11 @@ const server = async () => {
       contentSecurityPolicy: !isDevelopment,
     })
   );
+  cloudinary.v2.config({
+    cloud_name: config.cloudinary.cloudName,
+    api_key: config.cloudinary.apiKey,
+    api_secret: config.cloudinary.apiSecret,
+  });
 
   app.get('/', (_, res: Response) => {
     res.send({
