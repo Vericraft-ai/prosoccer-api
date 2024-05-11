@@ -2,6 +2,7 @@ import FormData from 'form-data';
 import axios from 'axios';
 import { pinFileToIPFS } from './pinFilesToIFPS';
 import { config } from '@app/config';
+import { logger } from '@api/utils/logger';
 
 export const stabilityImageGenerator = async (payload?: {
   prompt: string;
@@ -13,24 +14,27 @@ export const stabilityImageGenerator = async (payload?: {
     style: '3d-model',
     aspect_ratio: '9:16',
   };
+  try {
+    const imgResponse = await axios.postForm(
+      config.stability.url,
+      axios.toFormData(payload ?? formData, new FormData()),
+      {
+        validateStatus: undefined,
+        responseType: 'arraybuffer',
+        headers: {
+          Accept: 'image/*',
+          'Content-Type': 'multipart/form-data',
+          Authorization: `Bearer ${config.stability.apiKey}`,
+        },
+      }
+    );
 
-  const imgResponse = await axios.postForm(
-    config.stability.url,
-    axios.toFormData(payload ?? formData, new FormData()),
-    {
-      validateStatus: undefined,
-      responseType: 'arraybuffer',
-      headers: {
-        Accept: 'image/*',
-        'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${config.stability.apiKey}`,
-      },
+    if (imgResponse.status === 200) {
+      return imgResponse.data;
+    } else {
+      logger.error(`${imgResponse.status}: ${imgResponse.data.toString()}`);
     }
-  );
-
-  if (imgResponse.status === 200) {
-    return imgResponse.data;
-  } else {
-    throw new Error(`${imgResponse.status}: ${imgResponse.data.toString()}`);
+  } catch (error) {
+    logger.error(error);
   }
 };

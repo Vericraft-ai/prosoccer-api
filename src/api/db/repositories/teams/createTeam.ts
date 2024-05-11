@@ -1,7 +1,7 @@
 import { User } from '@api/db/models';
 import { Teams } from '@api/db/models/teams';
 import { logger } from '@api/utils/logger';
-import { startSession } from 'mongoose';
+import { sessionCommiter } from '../utils/sessionCommiter';
 
 export const createTeam = async (teamPayload: any) => {
   try {
@@ -17,13 +17,12 @@ export const createTeam = async (teamPayload: any) => {
       return team;
     }
 
-    const session = await startSession();
-    session.startTransaction();
     logger.info('Creating team', { teamPayload });
-    const newTeam = new Teams(teamPayload);
-    await newTeam.save();
-    await session.commitTransaction();
-    return newTeam;
+    const operation = async () => {
+      const newTeam = new Teams(teamPayload);
+      return await newTeam.save();
+    };
+    return await sessionCommiter(operation);
   } catch (error) {
     logger.error(error);
   }

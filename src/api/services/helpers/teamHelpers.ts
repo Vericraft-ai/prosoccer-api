@@ -1,3 +1,4 @@
+import { logger } from '@api/utils/logger';
 import { stabilityImageGenerator } from '@app/imageGen/helpers/stabilityImageGenerator';
 import cloudinary from 'cloudinary';
 import streamifier from 'streamifier';
@@ -13,20 +14,19 @@ export const generateTeamLogo = async (team_name: string) => {
   };
   const imageResponse = await stabilityImageGenerator(form_data);
   if (!imageResponse) {
-    return
+    return;
   }
-    return new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     let cloud_upload_stream = cloudinary.v2.uploader.upload_stream(
       { folder: 'prosoccer-team-logos' },
       (error, result) => {
         if (error) {
+          logger.error(error);
           reject(error);
         }
         resolve(result?.secure_url);
       }
     );
     streamifier.createReadStream(imageResponse).pipe(cloud_upload_stream);
-    });
-  
+  });
 };
-
