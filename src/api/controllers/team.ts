@@ -20,7 +20,7 @@ export const createTeam = async (
   }
   const payload = {
     ...request.body,
-    user_id: "e341kdtu-0e3d-4b3c",
+    user_id: request.user._id,
   } as TeamPayload;
   const team = await createNewTeam(payload);
   response.json(team);
