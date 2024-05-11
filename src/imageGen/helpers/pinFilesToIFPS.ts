@@ -5,8 +5,6 @@ import { generateRandomName, generateRandomValue } from '../utils/generators';
 import { mapValuestoObject } from '../utils/objectMapper';
 import { config } from '@app/config';
 
-const JWT = '';
-
 type PinataOptions = {
   file: fs.ReadStream;
 };

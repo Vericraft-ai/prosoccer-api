@@ -5,7 +5,6 @@ const UserSchema = new Schema<IUser>(
   {
     email: {
       type: String,
-      unique: true,
       validate: {
         validator: function (v: string) {
           return /.+@.+\..+/.test(v.toString());
@@ -14,14 +13,11 @@ const UserSchema = new Schema<IUser>(
           `${props.value} is not a valid email address!`,
       },
       maxlength: 100,
-      required: [true, 'email cannot be empty'],
     },
     username: {
       type: String,
-      unique: true,
       maxlength: [12, 'username cannot be greater than 12'],
       minlength: [3, 'username cannot be less than 3 character'],
-      required: true,
     },
     wallet_address: {
       type: String,

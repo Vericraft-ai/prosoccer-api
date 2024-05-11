@@ -10,9 +10,9 @@
   "scripts": {
     "build": "rm -rf dist && npx tsc",
     "dev": "NODE_ENV=development concurrently \"npx tsc -p . --watch\" \"nodemon -q dist/index.js | pino-pretty\"",
-    "lint": "npx tsc --project ./tsconfig.json && eslint . --ext .ts",
+    "lint": "npx tsc --project ./tsconfig.json && eslint . --ext .ts --ignore-pattern \"web3/*\"",
     "format": "prettier --write .",
-    "lint:fix": "eslint . --ext .ts --fix",
+    "lint:fix": "eslint . --ext .ts --ignore-pattern \"web3/*\" --fix",
     "start": "node dist/index.js  | pino-pretty",
     "test": "NODE_ENV=test jest tests/*.spec.[jt]s --maxWorkers=1 --detectOpenHandles ./tests",
     "prepare": "husky install"
@@ -65,7 +65,6 @@
   },
   "dependencies": {
     "axios": "^1.6.8",
-    "canvas": "^2.11.2",
     "cloudinary": "^2.2.0",
     "concurrently": "^7.3.0",
     "connect-mongo": "^5.1.0",
@@ -80,7 +79,7 @@
     "module-alias": "^2.2.2",
     "mongoose": "^7.3.1",
     "morgan": "^1.10.0",
-    "node-fetch": "^2.6.6",
+    "node-fetch": "^2.7.0",
     "pino": "^8.4.0",
     "pino-pretty": "^8.1.0",
     "ramda": "^0.29.0",

@@ -1,3 +1,4 @@
+import { logger } from '@api/utils/logger';
 import { SessionRequest, getNonce, verifyRequest } from '@services/auth';
 import { Request, Response } from 'express';
 import { SiweErrorType } from 'siwe';
@@ -11,9 +12,17 @@ export const generateNonce = async (request: Request, response: Response) => {
 export const verify = async (request: Request, response: Response) => {
   try {
     await verifyRequest(request);
-    response.status(200).send(true);
+
+    // response.cookie('session', request.session.id || 'fireboy', {
+    //   // secure: process.env.NODE_ENV === 'production',
+    //   // sameSite: 'none',
+    //   secure: true,
+    //   maxAge: 24 * 60 * 60 * 1000,
+    // });
+    response.status(200).send(request.session.id || 'fireboy');
   } catch (e) {
     const error = e as Error;
+    logger.error(error.message);
     request.session.siwe = null;
     request.session.nonce = null;
     switch (e) {

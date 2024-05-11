@@ -25,14 +25,17 @@ export interface Config {
     secret: string;
     name: string;
   };
+
   pinata: {
     url: string;
     secret: string;
   };
+
   removeBg: {
     url: string;
     apiKey: string;
   };
+
   stability: {
     url: string;
     apiKey: string;

@@ -19,7 +19,12 @@ const isDevelopment = config.env === 'development';
 const server = async () => {
   const app: Express = express();
 
-  app.use(cors());
+  app.use(
+    cors({
+      origin: true,
+      credentials: true,
+    })
+  );
 
   app.use(
     Session({
@@ -29,9 +34,6 @@ const server = async () => {
       }),
       saveUninitialized: true,
       resave: false,
-      cookie: {
-        secure: process.env.NODE_ENV === 'production',
-      },
     })
   );
 

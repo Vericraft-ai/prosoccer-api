@@ -5,12 +5,13 @@ import { ITeams } from '@api/interfaces/teams';
 import { ObjectId } from 'mongoose';
 
 export type session = {
+  id: string;
   nonce: string | null;
   save: () => Promise<void>;
   siwe: SiweMessage | null;
   destroy: () => void;
   cookie: Cookie;
-  user: {
+  user?: {
     _id: ObjectId;
     role?: string;
   };

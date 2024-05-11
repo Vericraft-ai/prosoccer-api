@@ -1,6 +1,6 @@
 import { findOneOrCreateUser } from '@api/db/repositories/user/operations/findOneOrCreate';
 import { Request } from 'express';
-import { generateNonce, SiweMessage, SiweErrorType } from 'siwe';
+import { generateNonce, SiweMessage } from 'siwe';
 
 export type SessionRequest = Request & {
   session: {
@@ -13,7 +13,7 @@ export type SessionRequest = Request & {
 
 export const getNonce = async (request: Request) => {
   request.session.nonce = generateNonce();
-  request.session.save();
+  await request.session.save();
   return request.session.nonce;
 };
 
@@ -24,28 +24,33 @@ export const verifyRequest = async (request: Request) => {
 
   const SIWEObject = new SiweMessage(request.body.message);
 
-  if (!request.session.nonce) {
-    throw new Error(SiweErrorType.INVALID_NONCE);
-  }
+  // if (!request.session.nonce) {
+  //   throw new Error(SiweErrorType.INVALID_NONCE);
+  // }
 
   const { data: message } = await SIWEObject.verify({
     signature: request.body.signature,
-    nonce: request.session.nonce ?? undefined,
+    nonce: request.body.message.nonce ?? undefined,
   });
 
   const user = await findOneOrCreateUser(message.address);
+
+  if (!user) {
+    throw new Error('There was an error authenticating the user.');
+  }
 
   request.session.siwe = message;
   request.session.cookie.expires = message.expirationTime
     ? new Date(message.expirationTime)
     : null;
-  if(user){
-    request.session.user.role = user.role;
-    request.session.user._id = user._id;
-  }
+  request.session.user = { role: user.role, _id: user._id};
 
-  request.session.save();
-  return true;
+  await request.session.save();
+
+  return {
+    wallet_address: message.address,
+    expires: message.expirationTime,
+  };
 };
 
 export const getActiveProfile = async (request: SessionRequest) => {
