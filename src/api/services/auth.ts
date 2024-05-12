@@ -43,7 +43,10 @@ export const verifyRequest = async (request: Request) => {
   request.session.cookie.expires = message.expirationTime
     ? new Date(message.expirationTime)
     : null;
-  request.session.user = { role: user.role, _id: user._id};
+  request.session.cookie.maxAge = message.expirationTime
+    ? Number(new Date(message.expirationTime).getTime())
+    : undefined;
+  request.session.user = { role: user.role, _id: user._id };
 
   await request.session.save();
 
