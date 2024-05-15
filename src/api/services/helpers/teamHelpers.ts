@@ -3,21 +3,21 @@ import { stabilityImageGenerator } from '@app/imageGen/helpers/stabilityImageGen
 import cloudinary from 'cloudinary';
 import streamifier from 'streamifier';
 
-export const getShortName = (team_name: string) =>
-  team_name.substring(0, 3).toUpperCase();
+export const getShortName = (teamName: string) =>
+  teamName.substring(0, 3).toUpperCase();
 
-export const generateTeamLogo = async (team_name: string) => {
-  const short_name = getShortName(team_name);
-  const form_data = {
-    prompt: `Generate a futuristic club logo for a soccer team with a short name of ${short_name}. The logo should have a modern design with a color scheme of black and white. The logo should be simple and easy to recognize.`,
+export const generateTeamLogo = async (teamName: string) => {
+  const shortName = getShortName(teamName);
+  const formData = {
+    prompt: `Generate a futuristic club logo for a soccer team with a short name of ${shortName}. The logo should have a modern design with a color scheme of black and white. The logo should be simple and easy to recognize.`,
     aspect_ratio: '1:1',
   };
-  const imageResponse = await stabilityImageGenerator(form_data);
+  const imageResponse = await stabilityImageGenerator(formData);
   if (!imageResponse) {
     return;
   }
   return new Promise((resolve, reject) => {
-    let cloud_upload_stream = cloudinary.v2.uploader.upload_stream(
+    let cloudStream = cloudinary.v2.uploader.upload_stream(
       { folder: 'prosoccer-team-logos' },
       (error, result) => {
         if (error) {
@@ -27,6 +27,6 @@ export const generateTeamLogo = async (team_name: string) => {
         resolve(result?.secure_url);
       }
     );
-    streamifier.createReadStream(imageResponse).pipe(cloud_upload_stream);
+    streamifier.createReadStream(imageResponse).pipe(cloudStream);
   });
 };

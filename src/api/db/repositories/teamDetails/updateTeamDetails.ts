@@ -1,11 +1,11 @@
-import { TeamDetails } from '@api/db/models/team_details';
-import { ITeamDetails } from '@api/interfaces/team_details';
+import { TeamDetails } from '@api/db/models/teamDetails';
+import { ITeamDetails } from '@api/interfaces/teamDetails';
 import { logger } from '@api/utils/logger';
 import { sessionCommiter } from '../utils/sessionCommiter';
 
 type Payload = {
   teamId: string;
-  payload: Partial<Omit<ITeamDetails, 'team_id'>>;
+  payload: Partial<Omit<ITeamDetails, 'teamId'>>;
 };
 
 export const updateTeamDetails = async (payload: Payload) => {

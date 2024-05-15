@@ -6,25 +6,25 @@ import {
   Formation,
   ITeamDetails,
   PlayStyle,
-} from '@api/interfaces/team_details';
+} from '@api/interfaces/teamDetails';
 import { ObjectId } from 'mongoose';
-import { createTeamDetails } from '@api/db/repositories/team_details/create_team_details';
-import { findTeamDetailsById } from '@api/db/repositories/team_details/find_team_details_by_id';
+import { createTeamDetails } from '@api/db/repositories/teamDetails/createTeamDetails';
+import { findTeamDetailsById } from '@api/db/repositories/teamDetails/findTeamDetailsById';
 import { updateTeamById } from '@api/db/repositories/teams/updateTeamById';
 import { ITeams } from '@api/interfaces/teams';
-import { updateTeamDetails } from '@api/db/repositories/team_details/update_team_details';
+import { updateTeamDetails } from '@api/db/repositories/teamDetails/updateTeamDetails';
 
 type Team = Omit<ITeams, '_id'>;
 
 export const createNewTeam = async (payload: any) => {
   const data = {
     ...payload,
-    logo_url: await generateTeamLogo(payload.team_name),
-    short_form: getShortName(payload.team_name),
+    logoUrl: await generateTeamLogo(payload.teamName),
+    shortForm: getShortName(payload.teamName),
   };
   const team = await createTeam(data);
   const teamDetailsPayload: ITeamDetails = {
-    team_id: team?._id as ObjectId,
+    teamId: team?._id as ObjectId,
     tactics: {
       formation: Formation.FOUR_FOUR_TWO_A,
       formation_style: PlayStyle.BALANCED,
@@ -47,16 +47,16 @@ export const updateTeamDetailsById = async (
 
 export const getUserByIdOrTeamId = async (
   req: ExpressRequest,
-  team_id?: string
+  teamId?: string
 ) => {
-  if (team_id) {
-    const team = await findTeamById({ team_id });
+  if (teamId) {
+    const team = await findTeamById({ teamId });
     return team;
   }
-  const team = await findTeamById({ user_id: req?.user?._id });
+  const team = await findTeamById({ teamId: req?.user?._id });
   return team;
 };
 
 export const getTeamDetailsById = async (id: string) => {
-  return await findTeamDetailsById({ team_id: id, team_details_id: id });
+  return await findTeamDetailsById({ teamId: id, teamDetailsId: id });
 };

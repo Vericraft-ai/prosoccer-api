@@ -1,6 +1,5 @@
 import FormData from 'form-data';
 import axios from 'axios';
-import { pinFileToIPFS } from './pinFilesToIFPS';
 import { config } from '@app/config';
 import { logger } from '@api/utils/logger';
 

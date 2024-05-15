@@ -32,5 +32,12 @@ module.exports = {
         caughtErrorsIgnorePattern: '^_',
       },
     ],
+    'prefer-const': [
+      'off',
+      {
+        destructuring: 'any',
+        ignoreReadBeforeAssign: false,
+      },
+    ],
   },
 };
