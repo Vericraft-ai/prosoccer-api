@@ -2,12 +2,12 @@ import { ObjectId } from 'mongoose';
 
 export interface ITeams {
   _id: ObjectId;
-  user_id: ObjectId;
-  team_name: string;
-  short_form: string;
-  manager_id: ObjectId;
+  userId: ObjectId;
+  teamName: string;
+  shortForm: string;
+  managerId: ObjectId;
   level: Levels;
-  logo_url: string;
+  logoUrl: string;
   created_at: Date;
   updated_at: Date;
 }

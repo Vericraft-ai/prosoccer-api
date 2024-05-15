@@ -3,16 +3,16 @@ import { Schema, model } from 'mongoose';
 
 const TeamsSchema = new Schema<ITeams>(
   {
-    user_id: {
+    userId: {
       type: Schema.Types.ObjectId,
       ref: 'User',
       required: true,
     },
-    team_name: {
+    teamName: {
       type: String,
       required: true,
     },
-    short_form: {
+    shortForm: {
       type: String,
       required: false,
     },
@@ -27,9 +27,9 @@ const TeamsSchema = new Schema<ITeams>(
       default: Levels.division1,
       required: false,
     },
-    logo_url: {
-        type: String,
-        required: false,
+    logoUrl: {
+      type: String,
+      required: false,
     },
   },
   {

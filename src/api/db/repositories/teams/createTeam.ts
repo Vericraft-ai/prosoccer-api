@@ -5,19 +5,19 @@ import { sessionCommiter } from '../utils/sessionCommiter';
 
 export const createTeam = async (teamPayload: any) => {
   try {
-    const user = await User.findOne({ user_id: teamPayload.user_id });
+    const user = await User.findOne({ user_id: teamPayload.userId });
     if (!user?.id) {
-      logger.error(`User not found with id: ${teamPayload.user_id}`);
+      logger.error(`User not found with id: ${teamPayload.userId}`);
       return;
     }
-    const team = await Teams.findOne({ user_id: teamPayload.user_id });
+    const team = await Teams.findOne({ user_id: teamPayload.userId });
 
     if (team?.id) {
-      logger.error(`Team already exists with id: ${teamPayload.user_id}`);
+      logger.error(`Team already exists with id: ${teamPayload.userId}`);
       return team;
     }
 
-    logger.info('Creating team', { teamPayload });
+    logger.debug('Creating team', { teamPayload });
     const operation = async () => {
       const newTeam = new Teams(teamPayload);
       return await newTeam.save();
