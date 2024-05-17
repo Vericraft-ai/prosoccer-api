@@ -13,6 +13,13 @@ import { findTeamDetailsById } from '@api/db/repositories/teamDetails/findTeamDe
 import { updateTeamById } from '@api/db/repositories/teams/updateTeamById';
 import { ITeams } from '@api/interfaces/teams';
 import { updateTeamDetails } from '@api/db/repositories/teamDetails/updateTeamDetails';
+import { createTeamSheet } from '@api/db/repositories/teamSheet/createTeamSheet';
+import {
+  TeamSheetPayload,
+  updateTeamSheet,
+} from '@api/db/repositories/teamSheet/updateTeamSheet';
+import { findAllPlayersInTeam } from '@api/db/repositories/player/findPlayer';
+import { findTeamSheet } from '@api/db/repositories/teamSheet/findTeamSheet';
 
 type Team = Omit<ITeams, '_id'>;
 
@@ -30,7 +37,13 @@ export const createNewTeam = async (payload: any) => {
       formation_style: PlayStyle.BALANCED,
     },
   };
-  await createTeamDetails(teamDetailsPayload);
+  const teamDetails = await createTeamDetails(teamDetailsPayload);
+
+  const teamSheeet = {
+    team: team?.id,
+    teamDetails: teamDetails?.id,
+  };
+  await createTeamSheet(teamSheeet);
   return team;
 };
 
@@ -45,7 +58,7 @@ export const updateTeamDetailsById = async (
   return await updateTeamDetails({ teamId, payload: data });
 };
 
-export const getUserByIdOrTeamId = async (
+export const getTeamByIdOrTeamId = async (
   req: ExpressRequest,
   teamId?: string
 ) => {
@@ -53,10 +66,22 @@ export const getUserByIdOrTeamId = async (
     const team = await findTeamById({ teamId });
     return team;
   }
-  const team = await findTeamById({ teamId: req?.user?._id });
+  const team = await findTeamById({ userId: req?.user?._id });
   return team;
 };
 
 export const getTeamDetailsById = async (id: string) => {
   return await findTeamDetailsById({ teamId: id, teamDetailsId: id });
+};
+
+export const updateTeamSheetDetails = async (payload: TeamSheetPayload) => {
+  return await updateTeamSheet(payload);
+};
+
+export const findPlayersInTeam = async (teamId: string) => {
+  return await findAllPlayersInTeam(teamId);
+};
+
+export const getTeamSheet = async (teamId: string) => {
+  return await findTeamSheet(teamId);
 };

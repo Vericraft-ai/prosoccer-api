@@ -10,7 +10,7 @@ const TeamSheetSchema = new Schema<ITeamSheet>(
     },
     players: {
       type: [String],
-      required: true,
+      required: false,
     },
     playerPositions: {
       type: [
@@ -20,7 +20,7 @@ const TeamSheetSchema = new Schema<ITeamSheet>(
           playerPrefferedPosition: String,
         },
       ],
-      required: true,
+      required: false,
       _id: false,
     },
     teamDetails: {
@@ -31,6 +31,7 @@ const TeamSheetSchema = new Schema<ITeamSheet>(
     sheetOverall: {
       type: Number,
       required: true,
+      default: 0,
     },
   },
   { timestamps: true }

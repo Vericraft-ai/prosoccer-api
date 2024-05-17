@@ -14,7 +14,7 @@ export const findPlayerAttributes = async (
     logger.debug('Finding player by', payload);
     return await Attributes.findOne({
       $or: [{ playerId: payload.playerId }, { _id: payload.id }],
-    });
+    }).populate('player');
   } catch (error) {
     logger.error(error);
     return null;

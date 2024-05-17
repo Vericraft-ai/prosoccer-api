@@ -3,7 +3,7 @@ import { ITeamSheet } from '@api/interfaces/teamSheet';
 import { logger } from '@api/utils/logger';
 import { sessionCommiter } from '../utils/sessionCommiter';
 
-export const createTeamSheet = async (payload: ITeamSheet) => {
+export const createTeamSheet = async (payload: Omit<ITeamSheet, '_id'>) => {
   if (!payload.team) {
     logger.debug('Team id is required');
     return;

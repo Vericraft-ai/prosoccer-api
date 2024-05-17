@@ -20,3 +20,15 @@ export const findPlayer = async (
     return null;
   }
 };
+
+export const findAllPlayersInTeam = async (teamId: string) => {
+  try {
+    logger.debug('Finding all players in team', { teamId });
+    return await Player.find({
+      team: teamId,
+    }).populate('team');
+  } catch (error) {
+    logger.error(error);
+    return null;
+  }
+};
