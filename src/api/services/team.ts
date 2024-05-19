@@ -1,6 +1,6 @@
 import { createTeam } from '@api/db/repositories/teams/createTeam';
 import { findTeamById } from '@api/db/repositories/teams/findTeamById';
-import { getShortName } from './helpers/teamHelpers';
+import { generateTeamLogo, getShortName } from './helpers/teamHelpers';
 import { ExpressRequest } from '@app/types/types';
 import {
   Formation,
@@ -26,7 +26,7 @@ type Team = Omit<ITeams, '_id'>;
 export const createNewTeam = async (payload: any) => {
   const data = {
     ...payload,
-    logoUrl: 'randomlogoUrl',
+    logoUrl: await generateTeamLogo(payload.teamName),
     shortForm: getShortName(payload.teamName),
   };
   const team = await createTeam(data);
