@@ -24,6 +24,7 @@ export const updateTeamSheet = async (payload: TeamSheetPayload) => {
         logger.debug('Invalid number of players');
         return;
       }
+      // TODO: Check if the player exists and is valid
       query.$addToSet = { players: { $each: payload.players } };
     }
 
@@ -32,15 +33,23 @@ export const updateTeamSheet = async (payload: TeamSheetPayload) => {
         logger.debug('Invalid player positions');
         return;
       }
-      query.$addToSet = {
-        ...query.$addToSet,
-        playerPositions: { $each: payload.playerPositions },
+
+      query.$addToSet = query.$addToSet || {};
+      query.$addToSet.playerPositions = query.$addToSet.playerPositions || {
+        $each: [],
       };
+
+      for (const playerPosition of payload.playerPositions) {
+        const { playerId, position, playerPrefferedPosition } = playerPosition;
+        query.$addToSet.playerPositions.$each.push({
+          playerId,
+          position,
+          playerPrefferedPosition,
+        });
+      }
     }
 
-    const update = { ...payload, query };
-
-    return await TeamSheet.findByIdAndUpdate({ _id: payload.id }, update, {
+    return await TeamSheet.findByIdAndUpdate({ _id: payload.id }, query, {
       new: true,
       runValidators: true,
     });
@@ -48,11 +57,11 @@ export const updateTeamSheet = async (payload: TeamSheetPayload) => {
     logger.error(error);
   }
 };
-
 const isValidPlayerPositions = (
   playerPositions: TeamSheetPayload['playerPositions']
 ) => {
   return playerPositions?.every(
-    (playerPosition) => playerPosition.position in PlayerPosition
+    (playerPosition) =>
+      playerPosition.position in PlayerPosition || !playerPosition.playerId
   );
 };

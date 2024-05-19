@@ -7,6 +7,7 @@ import { IAttributes } from '@api/interfaces/attributes';
 import { IPlayer } from '@api/interfaces/player';
 import { isValidPlayerPosition } from './helpers/isValidPlayerPosition';
 import { findPlayerAttributes } from '@api/db/repositories/playerAttributes/findPlayerAttributes';
+import { logger } from '@api/utils/logger';
 
 type PlayerPayload = {
   attributes: Pick<
@@ -28,19 +29,19 @@ export const createPlayerAndAttrb = async (pyload: PlayerPayload) => {
   const { attributes, player } = pyload;
 
   if (!isValidPlayerPosition(player.position)) {
-    throw new Error('Invalid player position');
+    logger.debug('Invalid player position');
   }
 
   const newPlayer = await createPlayer(player);
   let attrb;
-  if (newPlayer?.id) {
+  if (newPlayer?._id) {
     attrb = await createPlayerAttributes({
       ...attributes,
-      playerId: newPlayer.id,
+      playerId: newPlayer._id,
     });
   }
 
-  return { ...newPlayer, attributes: attrb };
+  return { player: newPlayer, attributes: attrb };
 };
 
 export const updatePlayerDetails = async (

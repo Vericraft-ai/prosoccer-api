@@ -6,11 +6,11 @@ import {
   updateTeamDetailsById,
   updateTeamSheetDetails,
   getTeamSheet,
+  findPlayersInTeam,
 } from '@services/team';
 import { Response } from 'express';
 import { runValidators } from './validators/payloadValidator';
 import { updateTeamById } from '@api/db/repositories/teams/updateTeamById';
-import { findTeamById } from '@api/db/repositories/teams/findTeamById';
 
 type PayloadValidation = Pick<TeamPayload, 'teamName'>;
 
@@ -32,7 +32,7 @@ export const createTeam = async (
     userId: request.user._id,
   } as TeamPayload;
   const team = await createNewTeam(payload);
-  return response.json(team);
+  response.json(team);
 };
 
 export const getTeamById = async (
@@ -78,14 +78,21 @@ export const updateTeamDetails = async (req: ExpressRequest, res: Response) => {
 
 export const updateTeamSheet = async (req: ExpressRequest, res: Response) => {
   const payload = { ...req.body, id: req.params.teamSheetId };
-  if (
-    !Array.isArray(payload.players) ||
-    !Array.isArray(payload.playerPositions)
-  ) {
-    res.status(400).json({
-      message: 'Bad request, players and playerPositions are required',
-    });
-    return;
+  if (payload.players) {
+    if (!Array.isArray(payload.players)) {
+      res.status(400).json({
+        message: 'Bad request, players should be an array',
+      });
+      return;
+    }
+  }
+  if (payload.playerPositions) {
+    if (!Array.isArray(payload.playerPositions)) {
+      res.status(400).json({
+        message: 'Bad request,  playerPositions are required',
+      });
+      return;
+    }
   }
   const teamSheet = await updateTeamSheetDetails(payload);
   res.json(teamSheet);
@@ -95,7 +102,7 @@ export const findPlayersInTeamByTeamId = async (
   req: ExpressRequest,
   res: Response
 ) => {
-  const players = await findTeamById({ teamId: req.params.teamId });
+  const players = await findPlayersInTeam(req.params.teamId);
   res.json(players);
 };
 

@@ -12,8 +12,8 @@ export const findTeamDetailsById = async ({
   try {
     logger.debug('Finding team details by id', { teamDetailsId, teamId });
     const teamDetails = await TeamDetails.findOne({
-      $or: [{ _id: teamDetailsId }, { teamId }],
-    }).populate('teamId');
+      $or: [{ _id: teamDetailsId }, { team: teamId }],
+    }).populate('team');
     if (!teamDetails?.id) {
       logger.error(
         `Team details not found with id: ${teamDetailsId} and team_id: ${teamId}`

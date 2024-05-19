@@ -6,14 +6,14 @@ import { sessionCommiter } from '../utils/sessionCommiter';
 export const createPlayer = async (payload: Omit<IPlayer, '_id'>) => {
   if (!payload.team) {
     logger.debug('Team id is required');
-    return;
+    throw new Error('Team id is required');
   }
   const playerExists = await findPlayerByTokenUri(payload.tokenURI);
   if (playerExists?._id) {
     logger.debug('Player already exists', {
       tokenURI: payload.tokenURI,
     });
-    return;
+    throw new Error('Player already exists');
   }
 
   try {
@@ -29,7 +29,7 @@ export const createPlayer = async (payload: Omit<IPlayer, '_id'>) => {
 
 const findPlayerByTokenUri = async (tokenUri: string) => {
   try {
-    return await Player.findOne({ token: tokenUri });
+    return await Player.findOne({ tokenURI: tokenUri });
   } catch (error) {
     logger.error(error);
   }

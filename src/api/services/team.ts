@@ -1,6 +1,6 @@
 import { createTeam } from '@api/db/repositories/teams/createTeam';
 import { findTeamById } from '@api/db/repositories/teams/findTeamById';
-import { generateTeamLogo, getShortName } from './helpers/teamHelpers';
+import { getShortName } from './helpers/teamHelpers';
 import { ExpressRequest } from '@app/types/types';
 import {
   Formation,
@@ -26,15 +26,15 @@ type Team = Omit<ITeams, '_id'>;
 export const createNewTeam = async (payload: any) => {
   const data = {
     ...payload,
-    logoUrl: await generateTeamLogo(payload.teamName),
+    logoUrl: 'randomlogoUrl',
     shortForm: getShortName(payload.teamName),
   };
   const team = await createTeam(data);
   const teamDetailsPayload: ITeamDetails = {
-    teamId: team?._id as ObjectId,
+    team: team?._id as ObjectId,
     tactics: {
       formation: Formation.FOUR_FOUR_TWO_A,
-      formation_style: PlayStyle.BALANCED,
+      formationStyle: PlayStyle.BALANCED,
     },
   };
   const teamDetails = await createTeamDetails(teamDetailsPayload);

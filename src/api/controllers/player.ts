@@ -4,6 +4,7 @@ import {
   createPlayerAndAttrb,
   updatePlayerDetails,
   getPlayerAttributes as findPlayerAttrb,
+  findPlayerByPlayerIdOrTokenUri,
 } from '@services/player';
 import { Response } from 'express';
 
@@ -22,14 +23,15 @@ export const createPlayerAttributes = async (
     return;
   }
   const team = await findTeamById({ userId: req.user._id });
-  if (!team) {
+  if (!team?._id) {
     res.status(403).json({ message: 'Bad request, Team not found' });
     return;
   }
+  console.log(team._id);
   const payload = {
     ...req.body,
-    team: team?.id,
   };
+  payload.player.team = team._id;
   const player = await createPlayerAndAttrb(payload);
   res.json(player);
 };
@@ -60,5 +62,20 @@ export const getPlayerAttributes = async (
   res: Response
 ) => {
   const player = await findPlayerAttrb(req.params.playerId);
+  res.json(player);
+};
+
+export const findPlayerByPlayerIdOrToken = async (
+  req: ExpressRequest,
+  res: Response
+) => {
+  if (req.params.tokenUri) {
+    return await findPlayerByPlayerIdOrTokenUri({
+      tokenUri: req.params.tokenUri,
+    });
+  }
+  const player = await findPlayerByPlayerIdOrTokenUri({
+    playerId: req.params.playerId,
+  });
   res.json(player);
 };
