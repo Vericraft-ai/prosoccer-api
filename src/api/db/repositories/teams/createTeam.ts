@@ -5,7 +5,7 @@ import { sessionCommiter } from '../utils/sessionCommiter';
 
 export const createTeam = async (teamPayload: any) => {
   try {
-    const user = await User.findOne({ user_id: teamPayload.userId });
+    const user = await User.findOne({ _id: teamPayload.userId });
     if (!user?.id) {
       logger.error(`User not found with id: ${teamPayload.userId}`);
       return;

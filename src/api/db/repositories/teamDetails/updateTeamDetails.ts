@@ -11,7 +11,7 @@ type Payload = {
 export const updateTeamDetails = async (payload: Payload) => {
   try {
     const team = await TeamDetails.findById(payload.teamId);
-    if (!team?.id) {
+    if (!team?._id) {
       logger.error(`Team not found with id: ${payload.teamId}`);
       throw new Error(`Team not found with id: ${payload.teamId}`);
     }

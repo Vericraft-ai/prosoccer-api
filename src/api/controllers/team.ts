@@ -2,8 +2,11 @@ import { ExpressRequest, TeamPayload } from '@app/types/types';
 import {
   createNewTeam,
   getTeamDetailsById,
-  getUserByIdOrTeamId,
+  getTeamByIdOrTeamId,
   updateTeamDetailsById,
+  updateTeamSheetDetails,
+  getTeamSheet,
+  findPlayersInTeam,
 } from '@services/team';
 import { Response } from 'express';
 import { runValidators } from './validators/payloadValidator';
@@ -36,12 +39,12 @@ export const getTeamById = async (
   request: ExpressRequest,
   response: Response
 ) => {
-  const team = await getUserByIdOrTeamId(request, request.params.teamId);
-  if (!team) {
+  const team = await getTeamByIdOrTeamId(request, request.params.teamId);
+  if (!team?.id) {
     response.status(404).json({ message: 'Team not found' });
     return;
   }
-  response.json(team);
+  return response.json(team);
 };
 
 export const getTeamDetails = async (
@@ -52,7 +55,7 @@ export const getTeamDetails = async (
   const teamDetails = await getTeamDetailsById(id);
   if (!teamDetails) {
     response
-      .status(404)
+      .status(400)
       .json({ message: 'Team details not found with that Id' });
     return;
   }
@@ -70,5 +73,43 @@ export const updateTeamDetails = async (req: ExpressRequest, res: Response) => {
   const teamId = req.params.teamId;
   const data = req.body;
   const teamDetails = await updateTeamDetailsById(teamId, data);
-  res.json(teamDetails);
+  return res.json(teamDetails);
+};
+
+export const updateTeamSheet = async (req: ExpressRequest, res: Response) => {
+  const payload = { ...req.body, id: req.params.teamSheetId };
+  if (payload.players) {
+    if (!Array.isArray(payload.players)) {
+      res.status(400).json({
+        message: 'Bad request, players should be an array',
+      });
+      return;
+    }
+  }
+  if (payload.playerPositions) {
+    if (!Array.isArray(payload.playerPositions)) {
+      res.status(400).json({
+        message: 'Bad request,  playerPositions are required',
+      });
+      return;
+    }
+  }
+  const teamSheet = await updateTeamSheetDetails(payload);
+  res.json(teamSheet);
+};
+
+export const findPlayersInTeamByTeamId = async (
+  req: ExpressRequest,
+  res: Response
+) => {
+  const players = await findPlayersInTeam(req.params.teamId);
+  res.json(players);
+};
+
+export const getTeamSheetDetails = async (
+  req: ExpressRequest,
+  res: Response
+) => {
+  const teamSheet = await getTeamSheet(req.params.teamId);
+  return res.json(teamSheet);
 };

@@ -7,7 +7,7 @@ import { Schema, model } from 'mongoose';
 
 const TeamDetailsSchema = new Schema<ITeamDetails>(
   {
-    teamId: {
+    team: {
       type: Schema.Types.ObjectId,
       ref: 'Teams',
       required: true,
@@ -24,7 +24,7 @@ const TeamDetailsSchema = new Schema<ITeamDetails>(
           enum: Formation,
           default: Formation.FOUR_FOUR_TWO_A,
         },
-        formation_style: {
+        formationStyle: {
           type: String,
           enum: PlayStyle,
           default: PlayStyle.BALANCED,

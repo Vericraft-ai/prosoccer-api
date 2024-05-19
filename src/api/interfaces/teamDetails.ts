@@ -20,7 +20,7 @@ export enum PlayStyle {
 }
 
 export interface ITeamDetails {
-  teamId: ObjectId | string;
+  team: ObjectId | string;
   colors?: {
     top: string;
     bottom: string;
@@ -28,7 +28,7 @@ export interface ITeamDetails {
   };
   tactics: {
     formation: Formation;
-    formation_style: PlayStyle;
+    formationStyle: PlayStyle;
   };
   captain?: ObjectId;
   createdAt?: Date;

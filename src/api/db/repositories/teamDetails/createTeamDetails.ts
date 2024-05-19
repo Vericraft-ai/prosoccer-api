@@ -5,15 +5,15 @@ import { sessionCommiter } from '../utils/sessionCommiter';
 import { Teams } from '@api/db/models/teams';
 
 export const createTeamDetails = async (payload: ITeamDetails) => {
-  if (!payload.teamId) {
+  if (!payload.team) {
     logger.error('Team id is required');
     return;
   }
   try {
-    const team = await Teams.findById(payload.teamId);
+    const team = await Teams.findById(payload.team);
     if (!team?.id) {
-      logger.error(`Team not found with id: ${payload.teamId}`);
-      throw new Error(`Team not found with id: ${payload.teamId}`);
+      logger.error(`Team not found with id: ${payload.team}`);
+      throw new Error(`Team not found with id: ${payload.team}`);
     }
 
     const operation = async () => {
