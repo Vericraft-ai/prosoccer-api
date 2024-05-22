@@ -28,7 +28,7 @@ export const generateRandomValue = (attr: string) => {
   } else if (attr === 'overall' || attr === 'potential') {
     return Math.floor(Math.random() * 100);
   } else {
-    return Math.floor(Math.random() * 100);
+    return Math.floor(Math.random() * 11) + 20;
   }
 };
 
@@ -91,7 +91,6 @@ export const generateRandomName = () => {
     'Antonio',
     'Ola',
     'Liam',
-    'Temi',
     'Ade',
     'Tobi',
     'Kunle',
