@@ -9,7 +9,7 @@ export const stabilityImageGenerator = async (payload?: {
 }) => {
   const formData = {
     prompt:
-      'Digital rendering of a male soccer player standing against a solid gray background with hands folded. The player has a calm and neutral expression, with a slight frown that might suggest focus or determination. His hairstyle is modern, featuring a short, styled hair with a subtle undercut. He is wearing a soccer kit composed of a jersey, shorts, socks, and cleats.The player’s jersey should be plain black with no design on the jersey.There should be "ProSoccer" printed on the jersey. The overall design of the jersey should be modern, fitting tightly to the player\'s build, enhancing the athletic and sleek appearance of the figure.',
+      'Digital rendering of a male soccer player standing against a solid gray background. The player has a calm and neutral expression, with a slight frown that might suggest focus or determination. His hairstyle is modern, featuring a short, styled hair with a subtle undercut. He is wearing a soccer kit composed of a jersey, shorts, socks, and cleats.The player’s jersey should be plain black with no design on the jersey.There should be "ProSoccer" printed on the jersey. The overall design of the jersey should be modern, fitting tightly to the player\'s build, enhancing the athletic and sleek appearance of the figure.',
     style: '3d-model',
     aspect_ratio: '9:16',
   };
