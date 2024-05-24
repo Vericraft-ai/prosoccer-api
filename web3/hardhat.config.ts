@@ -68,8 +68,7 @@ const config: HardhatUserConfig = {
         },
         avalancheFuji: {
             url: AVALANCHE_FUJI_RPC_URL,
-            gas: 225000000000,
-            accounts: PRIVATE_KEY !== undefined ? [`0x${PRIVATE_KEY}`] : [],
+            accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
             chainId: 43113,
             allowUnlimitedContractSize: true,
         },
@@ -81,7 +80,6 @@ const config: HardhatUserConfig = {
             chainId: 80002,
             gas: 2100000,
             gasPrice: 8000000000,
-            // gasPrice:50000000000, gasLimit: 1000000
         },
         polygonCardona: {
             url: "https://rpc.cardona.zkevm-rpc.com/",

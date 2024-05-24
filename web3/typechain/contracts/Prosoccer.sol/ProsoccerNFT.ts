@@ -51,7 +51,7 @@ export interface ProsoccerNFTInterface extends utils.Interface {
     "isApprovedForAll(address,address)": FunctionFragment;
     "listToken(uint256,uint256)": FunctionFragment;
     "mint(string)": FunctionFragment;
-    "mintAndListNFT(string)": FunctionFragment;
+    "mintAndListToken(string)": FunctionFragment;
     "name()": FunctionFragment;
     "onERC721Received(address,address,uint256,bytes)": FunctionFragment;
     "owner()": FunctionFragment;
@@ -81,7 +81,7 @@ export interface ProsoccerNFTInterface extends utils.Interface {
       | "isApprovedForAll"
       | "listToken"
       | "mint"
-      | "mintAndListNFT"
+      | "mintAndListToken"
       | "name"
       | "onERC721Received"
       | "owner"
@@ -143,7 +143,7 @@ export interface ProsoccerNFTInterface extends utils.Interface {
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "mintAndListNFT",
+    functionFragment: "mintAndListToken",
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
@@ -236,7 +236,7 @@ export interface ProsoccerNFTInterface extends utils.Interface {
   decodeFunctionResult(functionFragment: "listToken", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "mint", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "mintAndListNFT",
+    functionFragment: "mintAndListToken",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
@@ -465,7 +465,7 @@ export interface ProsoccerNFT extends BaseContract {
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    mintAndListNFT(
+    mintAndListToken(
       tokenURI: PromiseOrValue<string>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
@@ -596,7 +596,7 @@ export interface ProsoccerNFT extends BaseContract {
     overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  mintAndListNFT(
+  mintAndListToken(
     tokenURI: PromiseOrValue<string>,
     overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
@@ -729,7 +729,7 @@ export interface ProsoccerNFT extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    mintAndListNFT(
+    mintAndListToken(
       tokenURI: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
@@ -928,7 +928,7 @@ export interface ProsoccerNFT extends BaseContract {
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    mintAndListNFT(
+    mintAndListToken(
       tokenURI: PromiseOrValue<string>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
@@ -1060,7 +1060,7 @@ export interface ProsoccerNFT extends BaseContract {
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    mintAndListNFT(
+    mintAndListToken(
       tokenURI: PromiseOrValue<string>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;

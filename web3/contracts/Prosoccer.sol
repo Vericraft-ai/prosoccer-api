@@ -39,7 +39,7 @@ contract ProsoccerNFT is ERC721URIStorage, Ownable {
         }
     }
 
-    function mintAndListNFT(string memory tokenURI) public payable onlyOwner {
+    function mintAndListToken(string memory tokenURI) public payable onlyOwner {
         _safeMint(msg.sender, _tokenId);
         _setTokenURI(_tokenId, tokenURI);
 
