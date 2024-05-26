@@ -134,16 +134,16 @@ export const pinFileToIPFS = async ({ file }: PinataOptions) => {
 
     const jsonFormData = generateRandomPlayer(res.data.IpfsHash);
 
-    const response = await fetch(config.pinata.jsonUrl, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${config.pinata.secret}`,
-        'Content-Type': 'application/json',
-      },
-      body: jsonFormData,
-    });
-    const toJson = await response.json();
-    console.log(toJson);
+    // const response = await fetch(config.pinata.jsonUrl, {
+    //   method: 'POST',
+    //   headers: {
+    //     Authorization: `Bearer ${config.pinata.secret}`,
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: jsonFormData,
+    // });
+    // const toJson = await response.json();
+    // console.log(toJson);
   } catch (error) {
     console.log('Error pinning file to IPFS:', error);
   }
