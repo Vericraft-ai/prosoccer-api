@@ -23,7 +23,7 @@ export const config: Config = {
   },
   pinata: {
     url: getEnvironmentValue('PINATA_URL'),
-    jsonUrl: getEnvironmentValue('PINATA_JSON'),
+    // jsonUrl: getEnvironmentValue('PINATA_JSON'),
     secret: getEnvironmentValue('PINATA_JWT'),
   },
   removeBg: {

@@ -29,7 +29,7 @@ export interface Config {
   pinata: {
     url: string;
     secret: string;
-    jsonUrl: string;
+    // jsonUrl: string;
   };
 
   removeBg: {
