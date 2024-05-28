@@ -24,6 +24,7 @@ export interface Config {
   session: {
     secret: string;
     name: string;
+    domain: string;
   };
 
   pinata: {

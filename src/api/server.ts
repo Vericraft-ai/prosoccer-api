@@ -32,6 +32,9 @@ const server = async () => {
       store: MongoStore.create({
         mongoUrl: config.db.uri,
       }),
+      cookie: {
+        domain: config.session.domain,
+      },
       saveUninitialized: true,
       resave: false,
     })
