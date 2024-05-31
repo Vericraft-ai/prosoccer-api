@@ -12,13 +12,13 @@ import { config } from '@app/config';
 import routes from '@api/routes';
 import { connectDBWithRetry } from './db';
 import cloudinary from 'cloudinary';
+
 dotenv.config();
 
 const isDevelopment = config.env === 'development';
 
 const server = async () => {
   const app: Express = express();
-
   app.use(
     cors({
       origin: true,
