@@ -41,4 +41,5 @@ export const config: Config = {
     apiKey: getEnvironmentValue('CLOUDINARY_API_KEY'),
     apiSecret: getEnvironmentValue('CLOUDINARY_API_SECRET'),
   },
+  resendApiKey: getEnvironmentValue('RESEND_API_KEY'),
 };

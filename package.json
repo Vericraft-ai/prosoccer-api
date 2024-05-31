@@ -85,6 +85,7 @@
     "pino": "^8.4.0",
     "pino-pretty": "^8.1.0",
     "ramda": "^0.29.0",
+    "resend": "^3.2.0",
     "siwe": "^2.3.2",
     "streamifier": "^0.1.1",
     "throng": "^5.0.0",

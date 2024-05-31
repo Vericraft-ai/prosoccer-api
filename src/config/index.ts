@@ -47,6 +47,7 @@ export interface Config {
     apiKey: string;
     apiSecret: string;
   };
+  resendApiKey: string;
 }
 
 export const getEnvironmentValue = (
