@@ -13,7 +13,9 @@ import routes from '@api/routes';
 import { connectDBWithRetry } from './db';
 import cloudinary from 'cloudinary';
 import { Headers } from 'node-fetch';
+import fetch from 'node-fetch';
 (global as any).Headers = Headers;
+(global as any).fetch = fetch;
 dotenv.config();
 
 const isDevelopment = config.env === 'development';
