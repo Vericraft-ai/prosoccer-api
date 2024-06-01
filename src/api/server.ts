@@ -27,6 +27,7 @@ const server = async () => {
         'prosoccer.io',
         'https://prosoccer.io',
       ],
+      allowedHeaders: ['Content-Type', 'Authorization'],
       credentials: true,
     })
   );
