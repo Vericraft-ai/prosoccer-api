@@ -21,7 +21,12 @@ const server = async () => {
   const app: Express = express();
   app.use(
     cors({
-      origin: true,
+      origin: [
+        config.session.domain,
+        'http://localhost:3000',
+        'prosoccer.io',
+        'https://prosoccer.io',
+      ],
       credentials: true,
     })
   );
