@@ -41,6 +41,34 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.MockV3Aggregator__factory>;
     getContractFactory(
+      name: "AutomationBase",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.AutomationBase__factory>;
+    getContractFactory(
+      name: "AutomationCompatible",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.AutomationCompatible__factory>;
+    getContractFactory(
+      name: "AutomationCompatibleInterface",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.AutomationCompatibleInterface__factory>;
+    getContractFactory(
+      name: "FunctionsClient",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.FunctionsClient__factory>;
+    getContractFactory(
+      name: "IFunctionsClient",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IFunctionsClient__factory>;
+    getContractFactory(
+      name: "IFunctionsRouter",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IFunctionsRouter__factory>;
+    getContractFactory(
+      name: "FunctionsRequest",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.FunctionsRequest__factory>;
+    getContractFactory(
       name: "LinkTokenInterface",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.LinkTokenInterface__factory>;
@@ -52,6 +80,18 @@ declare module "hardhat/types/runtime" {
       name: "VRFCoordinatorV2Mock",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.VRFCoordinatorV2Mock__factory>;
+    getContractFactory(
+      name: "ConfirmedOwner",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ConfirmedOwner__factory>;
+    getContractFactory(
+      name: "ConfirmedOwnerWithProposal",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ConfirmedOwnerWithProposal__factory>;
+    getContractFactory(
+      name: "IOwnable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IOwnable__factory>;
     getContractFactory(
       name: "VRFConsumerBaseV2",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -173,6 +213,14 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Strings__factory>;
     getContractFactory(
+      name: "AutomatedFunctionsConsumer",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.AutomatedFunctionsConsumer__factory>;
+    getContractFactory(
+      name: "FunctionsConsumer",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.FunctionsConsumer__factory>;
+    getContractFactory(
       name: "ProsoccerNFT",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ProsoccerNFT__factory>;
@@ -217,6 +265,41 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.MockV3Aggregator>;
     getContractAt(
+      name: "AutomationBase",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.AutomationBase>;
+    getContractAt(
+      name: "AutomationCompatible",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.AutomationCompatible>;
+    getContractAt(
+      name: "AutomationCompatibleInterface",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.AutomationCompatibleInterface>;
+    getContractAt(
+      name: "FunctionsClient",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.FunctionsClient>;
+    getContractAt(
+      name: "IFunctionsClient",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IFunctionsClient>;
+    getContractAt(
+      name: "IFunctionsRouter",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IFunctionsRouter>;
+    getContractAt(
+      name: "FunctionsRequest",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.FunctionsRequest>;
+    getContractAt(
       name: "LinkTokenInterface",
       address: string,
       signer?: ethers.Signer
@@ -231,6 +314,21 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.VRFCoordinatorV2Mock>;
+    getContractAt(
+      name: "ConfirmedOwner",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ConfirmedOwner>;
+    getContractAt(
+      name: "ConfirmedOwnerWithProposal",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ConfirmedOwnerWithProposal>;
+    getContractAt(
+      name: "IOwnable",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IOwnable>;
     getContractAt(
       name: "VRFConsumerBaseV2",
       address: string,
@@ -381,6 +479,16 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.Strings>;
+    getContractAt(
+      name: "AutomatedFunctionsConsumer",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.AutomatedFunctionsConsumer>;
+    getContractAt(
+      name: "FunctionsConsumer",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.FunctionsConsumer>;
     getContractAt(
       name: "ProsoccerNFT",
       address: string,
