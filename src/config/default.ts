@@ -20,7 +20,7 @@ export const config: Config = {
   session: {
     secret: getEnvironmentValue('SESSION_SECRET'),
     name: getEnvironmentValue('SESSION_NAME', 'prosoccer'),
-    domain: getEnvironmentValue('SESSION_DOMAIN', '.prosoccer.io'),
+    domain: getEnvironmentValue('SESSION_DOMAIN', 'prosoccer.io'),
   },
 
   pinata: {

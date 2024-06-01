@@ -21,14 +21,10 @@ const server = async () => {
   const app: Express = express();
   app.use(
     cors({
-      origin: [
-        config.session.domain,
-        'http://localhost:3000',
-        'prosoccer.io',
-        'https://prosoccer.io',
-      ],
+      origin: config.session.domain,
       allowedHeaders: ['Content-Type', 'Authorization'],
       credentials: true,
+      optionsSuccessStatus: 200,
     })
   );
 
