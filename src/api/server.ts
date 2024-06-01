@@ -29,9 +29,7 @@ const server = async () => {
         'http://localhost:3000',
         'https://prosoccer.io',
       ],
-      allowedHeaders: ['Content-Type', 'Authorization', 'content-type'],
       credentials: true,
-      optionsSuccessStatus: 200,
     })
   );
 
