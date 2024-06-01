@@ -12,29 +12,16 @@ import { config } from '@app/config';
 import routes from '@api/routes';
 import { connectDBWithRetry } from './db';
 import cloudinary from 'cloudinary';
-import { Headers } from 'node-fetch';
-import fetch from 'node-fetch';
-(global as any).Headers = Headers;
-(global as any).fetch = fetch;
 dotenv.config();
 
 const isDevelopment = config.env === 'development';
 
 const server = async () => {
   const app: Express = express();
+
   app.use(
     cors({
-      origin: [
-        config.session.domain,
-        'http://localhost:3000',
-        'https://prosoccer.io',
-      ],
-      allowedHeaders: [
-        'Content-Type',
-        'Authorization',
-        'Access-Control-Allow-Origin',
-        'Access-Control-Allow-Headers',
-      ],
+      origin: true,
       credentials: true,
     })
   );
