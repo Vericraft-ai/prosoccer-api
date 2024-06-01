@@ -21,8 +21,12 @@ const server = async () => {
   const app: Express = express();
   app.use(
     cors({
-      origin: config.session.domain,
-      allowedHeaders: ['Content-Type', 'Authorization'],
+      origin: [
+        config.session.domain,
+        'http://localhost:3000',
+        'https://prosoccer.io',
+      ],
+      allowedHeaders: ['Content-Type', 'Authorization', 'content-type'],
       credentials: true,
       optionsSuccessStatus: 200,
     })
