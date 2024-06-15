@@ -14,12 +14,11 @@ import { updateTeamById } from '@api/db/repositories/teams/updateTeamById';
 import { ITeams } from '@api/interfaces/teams';
 import { updateTeamDetails } from '@api/db/repositories/teamDetails/updateTeamDetails';
 import { createTeamSheet } from '@api/db/repositories/teamSheet/createTeamSheet';
-import {
-  TeamSheetPayload,
-  updateTeamSheet,
-} from '@api/db/repositories/teamSheet/updateTeamSheet';
+import { updateTeamSheet } from '@api/db/repositories/teamSheet/updateTeamSheet';
 import { findAllPlayersInTeam } from '@api/db/repositories/player/findPlayer';
 import { findTeamSheet } from '@api/db/repositories/teamSheet/findTeamSheet';
+import { TeamSheetPayload } from '@api/interfaces/teamSheet';
+import { handleTeamSheetUpdate } from './helpers/teamSheet/handleTeamSheetUpdate';
 
 type Team = Omit<ITeams, '_id'>;
 
@@ -74,14 +73,15 @@ export const getTeamDetailsById = async (id: string) => {
   return await findTeamDetailsById({ teamId: id, teamDetailsId: id });
 };
 
-export const updateTeamSheetDetails = async (payload: TeamSheetPayload) => {
-  return await updateTeamSheet(payload);
-};
-
 export const findPlayersInTeam = async (teamId: string) => {
   return await findAllPlayersInTeam(teamId);
 };
 
 export const getTeamSheet = async (teamId: string) => {
   return await findTeamSheet(teamId);
+};
+
+export const updateTeamSheetDetails = async (payload: TeamSheetPayload) => {
+  const query = await handleTeamSheetUpdate(payload);
+  return await updateTeamSheet({ id: payload.id, query });
 };
