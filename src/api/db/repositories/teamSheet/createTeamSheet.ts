@@ -18,16 +18,3 @@ export const createTeamSheet = async (payload: Omit<ITeamSheet, '_id'>) => {
     logger.error(error);
   }
 };
-
-// const sheetOverAll = async (playerIds: string[]) => {
-//     try {
-//         for (let i = 0; i < playerIds.length; i++) {
-//             const player = await Player.findById(playerIds[i]);
-//             if (player?._id) {
-
-//             }
-//         }
-//     } catch (error) {
-//         logger.error(error);
-//     }
-// }

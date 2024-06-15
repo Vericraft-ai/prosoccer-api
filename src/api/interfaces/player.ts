@@ -23,7 +23,9 @@ export enum PlayerPosition {
   CDM = 'CDM',
   CM = 'CM',
   CAM = 'CAM',
-  LW = 'LW',
-  RW = 'RW',
+  LM = 'LM',
+  RM = 'RM',
+  LWF = 'LWF',
+  RWF = 'RWF',
   ST = 'ST',
 }

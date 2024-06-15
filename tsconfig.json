@@ -9,12 +9,9 @@
     "allowJs": true,
     "outDir": "./dist",
     "esModuleInterop": true,
-
     "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true,
-
     "moduleResolution": "node",
-
     "baseUrl": ".",
     "paths": {
       "@services/*": ["src/api/services/*"],
