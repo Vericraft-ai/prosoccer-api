@@ -13,34 +13,6 @@ import * as Contracts from ".";
 declare module "hardhat/types/runtime" {
   interface HardhatEthersHelpers extends HardhatEthersHelpersBase {
     getContractFactory(
-      name: "AggregatorInterface",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.AggregatorInterface__factory>;
-    getContractFactory(
-      name: "AggregatorV2V3Interface",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.AggregatorV2V3Interface__factory>;
-    getContractFactory(
-      name: "AggregatorV3Interface",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.AggregatorV3Interface__factory>;
-    getContractFactory(
-      name: "ChainlinkRequestInterface",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ChainlinkRequestInterface__factory>;
-    getContractFactory(
-      name: "LinkTokenInterface",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.LinkTokenInterface__factory>;
-    getContractFactory(
-      name: "LinkTokenReceiver",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.LinkTokenReceiver__factory>;
-    getContractFactory(
-      name: "MockV3Aggregator",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.MockV3Aggregator__factory>;
-    getContractFactory(
       name: "AutomationBase",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.AutomationBase__factory>;
@@ -69,18 +41,6 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.FunctionsRequest__factory>;
     getContractFactory(
-      name: "LinkTokenInterface",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.LinkTokenInterface__factory>;
-    getContractFactory(
-      name: "VRFCoordinatorV2Interface",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.VRFCoordinatorV2Interface__factory>;
-    getContractFactory(
-      name: "VRFCoordinatorV2Mock",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.VRFCoordinatorV2Mock__factory>;
-    getContractFactory(
       name: "ConfirmedOwner",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ConfirmedOwner__factory>;
@@ -92,42 +52,6 @@ declare module "hardhat/types/runtime" {
       name: "IOwnable",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IOwnable__factory>;
-    getContractFactory(
-      name: "VRFConsumerBaseV2",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.VRFConsumerBaseV2__factory>;
-    getContractFactory(
-      name: "ERC677Token",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC677Token__factory>;
-    getContractFactory(
-      name: "LinkToken",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.LinkToken__factory>;
-    getContractFactory(
-      name: "ERC677",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC677__factory>;
-    getContractFactory(
-      name: "ERC677Receiver",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ERC677Receiver__factory>;
-    getContractFactory(
-      name: "LinkBasicToken",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.LinkBasicToken__factory>;
-    getContractFactory(
-      name: "LinkERC20",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.LinkERC20__factory>;
-    getContractFactory(
-      name: "LinkERC20Basic",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.LinkERC20Basic__factory>;
-    getContractFactory(
-      name: "LinkStandardToken",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.LinkStandardToken__factory>;
     getContractFactory(
       name: "Ownable",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -224,46 +148,7 @@ declare module "hardhat/types/runtime" {
       name: "ProsoccerNFT",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ProsoccerNFT__factory>;
-    getContractFactory(
-      name: "MockOracle",
-      signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.MockOracle__factory>;
 
-    getContractAt(
-      name: "AggregatorInterface",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.AggregatorInterface>;
-    getContractAt(
-      name: "AggregatorV2V3Interface",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.AggregatorV2V3Interface>;
-    getContractAt(
-      name: "AggregatorV3Interface",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.AggregatorV3Interface>;
-    getContractAt(
-      name: "ChainlinkRequestInterface",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.ChainlinkRequestInterface>;
-    getContractAt(
-      name: "LinkTokenInterface",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.LinkTokenInterface>;
-    getContractAt(
-      name: "LinkTokenReceiver",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.LinkTokenReceiver>;
-    getContractAt(
-      name: "MockV3Aggregator",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.MockV3Aggregator>;
     getContractAt(
       name: "AutomationBase",
       address: string,
@@ -300,21 +185,6 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.FunctionsRequest>;
     getContractAt(
-      name: "LinkTokenInterface",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.LinkTokenInterface>;
-    getContractAt(
-      name: "VRFCoordinatorV2Interface",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.VRFCoordinatorV2Interface>;
-    getContractAt(
-      name: "VRFCoordinatorV2Mock",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.VRFCoordinatorV2Mock>;
-    getContractAt(
       name: "ConfirmedOwner",
       address: string,
       signer?: ethers.Signer
@@ -329,51 +199,6 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.IOwnable>;
-    getContractAt(
-      name: "VRFConsumerBaseV2",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.VRFConsumerBaseV2>;
-    getContractAt(
-      name: "ERC677Token",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.ERC677Token>;
-    getContractAt(
-      name: "LinkToken",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.LinkToken>;
-    getContractAt(
-      name: "ERC677",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.ERC677>;
-    getContractAt(
-      name: "ERC677Receiver",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.ERC677Receiver>;
-    getContractAt(
-      name: "LinkBasicToken",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.LinkBasicToken>;
-    getContractAt(
-      name: "LinkERC20",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.LinkERC20>;
-    getContractAt(
-      name: "LinkERC20Basic",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.LinkERC20Basic>;
-    getContractAt(
-      name: "LinkStandardToken",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.LinkStandardToken>;
     getContractAt(
       name: "Ownable",
       address: string,
@@ -494,11 +319,6 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.ProsoccerNFT>;
-    getContractAt(
-      name: "MockOracle",
-      address: string,
-      signer?: ethers.Signer
-    ): Promise<Contracts.MockOracle>;
 
     // default types
     getContractFactory(

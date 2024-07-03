@@ -2,6 +2,5 @@
 /* tslint:disable */
 /* eslint-disable */
 export * as prosoccerSol from "./Prosoccer.sol";
-export * as test from "./test";
 export { AutomatedFunctionsConsumer__factory } from "./AutomatedFunctionsConsumer__factory";
 export { FunctionsConsumer__factory } from "./FunctionsConsumer__factory";

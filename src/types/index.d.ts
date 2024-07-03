@@ -3,3 +3,9 @@ declare namespace Express {
     session: import('./types').session;
   }
 }
+
+declare global {
+  interface BigInt {
+    toJSON(): string;
+  }
+}

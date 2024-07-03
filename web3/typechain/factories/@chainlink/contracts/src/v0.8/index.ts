@@ -3,7 +3,4 @@
 /* eslint-disable */
 export * as automation from "./automation";
 export * as functions from "./functions";
-export * as interfaces from "./interfaces";
-export * as mocks from "./mocks";
 export * as shared from "./shared";
-export { VRFConsumerBaseV2__factory } from "./VRFConsumerBaseV2__factory";

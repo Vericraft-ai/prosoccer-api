@@ -4,6 +4,15 @@ import { config as dotenvConfig } from 'dotenv';
 import * as R from 'ramda';
 import { Environment } from '@app/config/environments/types';
 
+export type Network = 'fuji' | 'amoy';
+
+type NetworkData = {
+  contract: string;
+  chainId: number;
+  apiKey?: string;
+  rpcUrl?: string;
+};
+
 dotenvConfig();
 
 const env = process.env.NODE_ENV ?? 'development';
@@ -42,12 +51,24 @@ export interface Config {
     url: string;
     apiKey: string;
   };
+
   cloudinary: {
     cloudName: string;
     apiKey: string;
     apiSecret: string;
   };
+
   resendApiKey: string;
+
+  network: Network;
+
+  web3Provider: Record<Network, NetworkData>;
+
+  redis: {
+    host: string;
+    port: number;
+    password?: string;
+  };
 }
 
 export const getEnvironmentValue = (
@@ -68,7 +89,6 @@ const envConfig = require(`./environments/${env}`)?.config;
 const defaultConfig = require('./default').config;
 /* eslint-enable */
 
-/* eslint-enable @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires */
 export const config = R.mergeDeepRight(
   defaultConfig,
   envConfig
