@@ -5,6 +5,7 @@ import { logger } from '@app/api/utils/logger';
 let options: RedisOptions = {
   host: config.redis.host,
   port: config.redis.port,
+  username: config.redis.username,
   password: config.redis.password,
   retryStrategy: (times) => {
     // reconnect after

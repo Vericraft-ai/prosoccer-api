@@ -68,5 +68,6 @@ export const config: Config = {
     host: getEnvironmentValue('REDIS_HOST', 'localhost'),
     port: Number(getEnvironmentValue('REDIS_PORT', '6379')),
     password: getEnvironmentValue('REDIS_PASSWORD', ''),
+    username: getEnvironmentValue('REDIS_USERNAME', ''),
   },
 };
