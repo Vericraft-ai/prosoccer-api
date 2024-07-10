@@ -4,6 +4,7 @@ import { Wallet, providers } from "ethers"
 import { getSecondaryPrivateKey, getProviderRpcUrl } from "../utils"
 
 async function main() {
+    // confirm network address from mint script
     const contractaddress = "0xd8D2631FFf643eA60E8954EAD9f64f6c6b67da86"
 
     const prosoccerNFT = await hre.ethers.getContractFactory("ProsoccerNFT")

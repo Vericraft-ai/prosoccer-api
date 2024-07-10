@@ -10,8 +10,10 @@ import "@openzeppelin/contracts/token/ERC1155/extensions/ERC1155Supply.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 
 struct NFTListing {
+    uint256 tokenId;
     uint256 price;
     address seller;
+    string tokenURI;
 }
 
 contract ProsoccerNFT is ERC721URIStorage, Ownable {
@@ -45,21 +47,20 @@ contract ProsoccerNFT is ERC721URIStorage, Ownable {
 
         _transfer(msg.sender, address(this), _tokenId);
 
-        _listings[_tokenId] = NFTListing(msg.value + 100, msg.sender);
+        _listings[_tokenId] = NFTListing(_tokenId, msg.value + 100, msg.sender, tokenURI);
 
         unchecked {
             _tokenId++;
         }
     }
 
-    // Function to list a token
     function listToken(uint256 tokenId, uint256 price) public {
         require(_ownerOf(tokenId) != address(0), "ERC721: Nonexistent token");
         require(ownerOf(tokenId) == msg.sender, "ERC721: Not the owner");
 
         _transfer(msg.sender, address(this), tokenId);
 
-        _listings[tokenId] = NFTListing(price, msg.sender);
+        _listings[tokenId] = NFTListing(tokenId, price, msg.sender, tokenURI(tokenId));
     }
 
     function getListing(uint256 tokenId) public view returns (NFTListing memory) {

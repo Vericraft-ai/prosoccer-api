@@ -3,7 +3,5 @@
 /* eslint-disable */
 import type * as prosoccerSol from "./Prosoccer.sol";
 export type { prosoccerSol };
-import type * as test from "./test";
-export type { test };
 export type { AutomatedFunctionsConsumer } from "./AutomatedFunctionsConsumer";
 export type { FunctionsConsumer } from "./FunctionsConsumer";
