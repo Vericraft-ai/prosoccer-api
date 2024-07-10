@@ -28,6 +28,7 @@ const AVALANCHE_FUJI_RPC_URL =
 // Your API key for Etherscan, obtain one at https://etherscan.io/
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "Your etherscan API key"
 const POLYGONSCAN_API_KEY = process.env.POLYGONSCAN_API_KEY || "Your polygonscan API key"
+const CARDONA_API_KEY = process.env.CARDONA_API_KEY || "Your cardona API key"
 
 const config: HardhatUserConfig = {
     defaultNetwork: "hardhat",
@@ -77,8 +78,8 @@ const config: HardhatUserConfig = {
             accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
             saveDeployments: true,
             chainId: 80002,
-            // gas: 2100000,
-            // gasPrice: 8000000000,
+            gas: 2100000,
+            gasPrice: 8000000000,
         },
         polygonCardona: {
             url: "https://rpc.cardona.zkevm-rpc.com/",

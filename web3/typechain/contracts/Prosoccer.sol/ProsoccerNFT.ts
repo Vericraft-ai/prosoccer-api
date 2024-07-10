@@ -29,17 +29,13 @@ import type {
 } from "../../common";
 
 export type NFTListingStruct = {
-  tokenId: PromiseOrValue<BigNumberish>;
   price: PromiseOrValue<BigNumberish>;
   seller: PromiseOrValue<string>;
-  tokenURI: PromiseOrValue<string>;
 };
 
-export type NFTListingStructOutput = [BigNumber, BigNumber, string, string] & {
-  tokenId: BigNumber;
+export type NFTListingStructOutput = [BigNumber, string] & {
   price: BigNumber;
   seller: string;
-  tokenURI: string;
 };
 
 export interface ProsoccerNFTInterface extends utils.Interface {
