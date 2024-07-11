@@ -17,7 +17,11 @@ const TeamSheetSchema = new Schema<ITeamSheet>(
         {
           playerId: String,
           position: String,
-          playerPrefferedPosition: String,
+          potential: Number,
+          playerPositioning: {
+            assignedPosition: String,
+            preferredPosition: String,
+          },
         },
       ],
       required: false,

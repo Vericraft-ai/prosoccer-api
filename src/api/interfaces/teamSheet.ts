@@ -8,10 +8,27 @@ export interface ITeamSheet {
   playerPositions?: {
     playerId: string;
     position: PlayerPosition;
-    playerPrefferedPosition: PlayerPosition;
+    potential: number;
+    playerPositioning: PlayerPositioning;
   }[];
   teamDetails: ObjectId;
   sheetOverall?: number;
   created_at?: Date;
   updated_at?: Date;
+}
+
+type PlayerPositioning = {
+  assignedPosition: PlayerPosition;
+  preferredPosition: PlayerPosition;
+};
+
+export interface TeamSheetPayload {
+  id: string;
+  players?: string[];
+  playerPositions?: {
+    playerId: string;
+    position: PlayerPosition;
+    potential: number;
+    playerPositioning: PlayerPositioning;
+  }[];
 }
