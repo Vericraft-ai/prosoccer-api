@@ -12,6 +12,13 @@ export const generateNonce = async (request: Request, response: Response) => {
 export const verify = async (request: Request, response: Response) => {
   try {
     await verifyRequest(request);
+
+    // response.cookie('session', request.session.id || 'fireboy', {
+    //   // secure: process.env.NODE_ENV === 'production',
+    //   // sameSite: 'none',
+    //   secure: true,
+    //   maxAge: 24 * 60 * 60 * 1000,
+    // });
     response.status(200).send(request.session.id || 'fireboy');
   } catch (e) {
     const error = e as Error;

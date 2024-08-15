@@ -6,10 +6,10 @@ import { tokenURIs } from "./data/tokens"
 
 async function main() {
     // AvalancheFuji
-    const contractaddress = "0xb502c9766Eb1915f4fc480ed2a639cd1Bef4863B"
+    const contractaddress = "0xAef261A10E105777EDc79C6A79ca6667c0A6b69A"
 
     // Polygon Amoy  
-    // const contractaddress = "0xEa65C2781B5042223ed5C9CC0d7Fc43d59014e08"
+    // const contractaddress = "0xF23cE46AE7b6edAF44a69Be837Bc0813E6f263F9"
 
     const prosoccerNFT = await hre.ethers.getContractFactory("ProsoccerNFT")
 
